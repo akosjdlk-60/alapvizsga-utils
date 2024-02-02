@@ -1,1 +1,0 @@
-# alapvizsga-utils
