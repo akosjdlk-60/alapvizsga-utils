@@ -7,7 +7,7 @@ build-backend = "hatchling.build"
 packages = ["src/utils"]
 
 [project]
-name = "alapvizsga-utils"
+name = "alapvizsga_utils"
 version = "0.4"
 authors = [
   { name="Akos K.", email="akosjdlk.60@gmail.com" },
