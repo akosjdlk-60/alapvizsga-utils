@@ -337,7 +337,6 @@ def remove_duplicates(iterable: tuple | dict | list | set) -> list:
         return original
     return iterable
 
-
 def search_class_list(class_list: list[type], key: str | None, value: Any | None) -> list:
     """
     Visszaadja azokat az elemeket, amelyeknek a key attribútuma megegyezik a value-val.
@@ -384,9 +383,62 @@ def class_list_atlag(class_list: list[type], key: str) -> float:
     """
     return sum([getattr(x, key) for x in class_list]) / len(class_list)
 
+def write_to_file(file_name_and_path: str, class_list: list[type], schema: list[list], header_line: str | None = None) -> None:
+    """
+    Kiírja a class_list tartalmát a file_name_and_path-ba.
+
+    ### Paraméterek
+    -----
+    file_name_and_path: :class:`str`
+        A file neve és elérési útja.
+    class_list: :class:`list[type]
+        A class-ok listája.
+    schema: :class:`list[attr, delimiter, attr]` => ["name", ";", "salary"]
+        A class attribútumainak sorrendje és elválasztó karaktere.
+    header_line: :class:`str` | None =>
+        A fájl első sora, ha None, akkor nem ír fejlécet.
+    """
+
+    with open(file_name_and_path, "w", encoding="utf-8") as file:
+        if header_line: file.write(header_line + "\n")
+        [file.write(f"{getattr(x, schema[0])}{schema[1]}{getattr(x, schema[2])}\n") for x in class_list]
+
+def update_class_values(object: type, key: str, value: Any) -> type:
+    """
+    Frissíti a class attribútumát.
+
+    ### Paraméterek
+    -----
+    object: :class:`type`
+        A class.
+    key: :class:`str`
+        Az attribútum neve.
+    value: :class:`Any`
+        Az attribútum új értéke.
+
+    ### Return
+    -----
+    -> :class:`type`
+
+    ### Példa
+    ------
+    ::
+
+        # Alma(szin, szarm_orszag, ar)
+        class_list = [Alma("gold", "Magyarország", 234), Alma("red", "Magyarország", 533), Alma("green", "Magyarország", 754)]
+        print(update_class_values(class_list[0], "ar", 999)) -> Alma("gold", "Magyarország", 999)
+    """
+    try:
+        setattr(object, key, value)
+    except Exception as e:
+        print("Hiba történt a frissítés során:", e)
+
+    return object
 
 
 
+
+    
 #                                                Unit tests
 """----------------------------------------------------------------------------------------------------"""
 def unit_test():
