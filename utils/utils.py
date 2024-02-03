@@ -302,6 +302,27 @@ def read_from_file(path: str, delimiter: str = ",", ignore_first_line: bool = Tr
         return data
 
 def remove_duplicates(iterable: tuple | dict | list | set) -> list:
+    """
+    Eltávolítja az iterből a duplikált elemeket, a sorrendet megtartva.
+
+    ### Paraméterek
+    -----
+    iterable: :class:`tuple` | :class:`dict` | :class:`list` | :class:`set`
+
+    ### Return
+    -----
+    -> :class:`list`
+
+    ### Példa
+    ------
+    ::
+
+        print(remove_duplicates([1, 2, 2, 3, 4, 4, 4, 5, 6, 6, 6, 6, 7])) -> [1, 2, 3, 4, 5, 6, 7]\n
+        print(remove_duplicates([1, 2, 3, 4, 5, 6, 7])) -> [1, 2, 3, 4, 5, 6, 7]\n
+        print(remove_duplicates([1, 1, 1, 1, 1, 1, 1, 1, 1, 1])) -> [1]\n
+        print(remove_duplicates({"x": 1, "a": 1, "y": 5})) -> {'a': 1, 'y': 5}
+    """
+    
     removed_indexes = []
     original = iterable
     if isinstance(iterable, dict):
@@ -317,6 +338,51 @@ def remove_duplicates(iterable: tuple | dict | list | set) -> list:
     return iterable
 
 
+def search_class_list(class_list: list[type], key: str | None, value: Any | None) -> list:
+    """
+    Visszaadja azokat az elemeket, amelyeknek a key attribútuma megegyezik a value-val.
+
+    ### Paraméterek
+    -----
+    class_list: :class:`list[type]`
+    key: :class:`str` | None
+    value: :class:`Any` | None
+
+    ### Return
+    -----
+    -> :class:`list[type]`
+
+    ### Példa
+    ------
+    ::
+
+        # Alma(szin, szarm_orszag, ar)
+        class_list = [Alma("gold", "Magyarország", 234), Alma("gold", "Németország", 423), Alma("red", "Magyarország", 533), Alma("green", "Magyarország", 754)]
+        print(search_class_list(class_list, "szin", "gold")) -> [Alma("golden", "Magyarország", 234), Alma("gold", "Németország", 423)]
+    """
+    return [x for x in class_list if getattr(x, key) == value]
+
+def class_list_atlag(class_list: list[type], key: str) -> float:
+    """
+    Visszaadja a class_list átlagát a key attribútum alapján.
+
+    ### Paraméterek
+    -----
+    class_list: :class:`list[type]`
+    key: :class:`str`
+
+    ### Return
+    -----
+    -> :class:`float`
+
+    ### Példa
+    ------
+    ::
+        # Alma(szin, szarm_orszag, ar)
+        class_list = [Alma("gold", "Magyarország", 234), Alma("red", "Magyarország", 533), Alma("green", "Magyarország", 754)]
+        print(class_atlag(class_list, "ar")) -> 507.0
+    """
+    return sum([getattr(x, key) for x in class_list]) / len(class_list)
 #                                                Unit tests
 """----------------------------------------------------------------------------------------------------"""
 def unit_test():
