@@ -1,10 +1,10 @@
-from dataclasses import make_dataclass
+from dataclasses import dataclass
 from typing import Any
 from os import system as cmd
 from os import name as os_name
 
-__all__ = ( # ezeket fogja importálni, ha     `from utils import *`
-    "create_class",
+__all__ = ( # ezeket fogja importálni, ha     `from alapvizsga_utils import *`
+    "easy_class",
     "clear_screen",
     "is_numeric",
     "remove_non_numeric",
@@ -21,7 +21,7 @@ __all__ = ( # ezeket fogja importálni, ha     `from utils import *`
     "class_list_atlag"
 )
 
-def create_class(cls_name = "ClassName", *field_names) -> type:
+def easy_class(cls=None) -> type:
     """
     Paraméterek
     -----
@@ -36,18 +36,22 @@ def create_class(cls_name = "ClassName", *field_names) -> type:
 
     Példa
     ------
-    ::
+    :: 
+        @easy_class
+        class Alma:
+            fajta: str
+            darab: int
+            cikksz: int
 
-        Alma = create_class(name="Alma", [("fajta", str), ("szarm_orszag", str), ("termek_kod", int)])
-        golden = Alma("golden", "Magyarország", 767254)
+        alma = Alma("gold", 10, 123)
+        print(alma) -> Alma(fajta='gold', darab=10, cikksz=123)
 
-        print(golden) -> 'Alma(golden, Magyarország, 767254)'
-        print(golden.fajta) -> "golden"
+        
     """
-
-    cls = make_dataclass(cls_name, *field_names, slots=True)
     
-    return cls
+    return dataclass(cls, True, True, True, False, False,
+                            False, True, False, True,
+                            False)
 
 def clear_screen():
     cmd('cls' if os_name == 'nt' else 'clear')
