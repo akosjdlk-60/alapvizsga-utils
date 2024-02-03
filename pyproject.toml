@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "alapvizsga_utils"
-version = "0.5.1"
+version = "0.5.2"
 authors = [
   { name="Akos K.", email="akosjdlk.60@gmail.com" },
 ]

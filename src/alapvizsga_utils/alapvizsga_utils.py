@@ -264,7 +264,7 @@ def endswith(value: str, suffix: str) -> bool:
     """
     return value[-len(suffix):] == suffix
     
-def read_from_file(path: str, delimiter: str = ",", ignore_first_line: bool = True, cls: type | None = None, debug = True) -> list[type | list[str]]:
+def read_from_file(path: str, delimiter: str = ",", ignore_first_line: bool = True, cls: type | None = None, debug: bool = False) -> list[type | list[str]]:
     """
     Beolvassa a fájlt, és visszaadja a tartalmát, opcionálisan class-t is létrehoz.
 
