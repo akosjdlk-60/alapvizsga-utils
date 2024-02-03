@@ -8,7 +8,7 @@ packages = ["src/utils"]
 
 [project]
 name = "alapvizsga-utils"
-version = "0.0.1"
+version = "0.4"
 authors = [
   { name="Akos K.", email="akosjdlk.60@gmail.com" },
 ]
