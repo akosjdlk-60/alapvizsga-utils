@@ -1,1 +1,1 @@
-from utils import *
+from alapvizsga_utils.alapvizsga_utils import *
