@@ -3,7 +3,7 @@ from typing import Any
 from os import system as cmd
 from os import name as os_name
 
-__any__ = ( # ezeket fogja importálni, ha     `from utils import *`
+__all__ = ( # ezeket fogja importálni, ha     `from utils import *`
     "create_class",
     "clear_screen",
     "is_numeric",
@@ -14,7 +14,11 @@ __any__ = ( # ezeket fogja importálni, ha     `from utils import *`
     "is_in_inter",
     "endswith",
     "read_from_file",
-    "remove_duplicates"
+    "remove_duplicates",
+    "update_class_values",
+    "write_to_file",
+    "search_class_list",
+    "class_list_atlag"
 )
 
 def create_class(cls_name = "ClassName", *field_names) -> type:
