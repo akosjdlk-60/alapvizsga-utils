@@ -23,20 +23,18 @@ __all__ = ( # ezeket fogja importálni, ha     `from alapvizsga_utils import *`
 
 def easy_class(cls=None) -> type:
     """
-    Paraméterek
+    ### Paraméterek
     -----
-    name: :class:`str`
-        A class neve.
-    *field_names: :class:`list[(str, type), (str, type), ...]`
-        A Class attribútumainak listája és ezek típusai.
+    ## \-
 
-    Return
+    ### Return
     -----
     -> Class
 
-    Példa
-    ------
-    :: 
+    ### Példa
+    -------
+    ::
+        
         @easy_class
         class Alma:
             fajta: str
@@ -49,9 +47,7 @@ def easy_class(cls=None) -> type:
         
     """
     
-    return dataclass(cls, True, True, True, False, False,
-                            False, True, False, True,
-                            False)
+    return dataclass(cls, init = True, repr=True, eq=True, order = False, unsafe_hash = False, frozen = False, match_args=True, kw_only=False, slots=True, weakref_slot = False)
 
 def clear_screen():
     cmd('cls' if os_name == 'nt' else 'clear')
@@ -73,6 +69,7 @@ def is_numeric(value: Any) -> None | float | int:
     ### Példa
     ------
     ::
+    
         print(is_numeric(10)) -> True\n
         print(is_numeric("10")) -> True\n
         print(is_numeric(10.0)) -> True\n
