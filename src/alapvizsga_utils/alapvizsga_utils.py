@@ -264,7 +264,7 @@ def endswith(value: str, suffix: str) -> bool:
     """
     return value[-len(suffix):] == suffix
     
-def read_from_file(path: str, delimiter: str = ",", ignore_first_line: bool = True, cls: type | None = None) -> list[type | list[str]]:
+def read_from_file(path: str, delimiter: str = ",", ignore_first_line: bool = True, cls: type | None = None, debug = True) -> list[type | list[str]]:
     """
     Beolvassa a fájlt, és visszaadja a tartalmát, opcionálisan class-t is létrehoz.
 
@@ -301,8 +301,10 @@ def read_from_file(path: str, delimiter: str = ",", ignore_first_line: bool = Tr
             f.readline()
         lines = f.readlines()
         data = [line.strip().split(delimiter) for line in lines]
+        if debug: print(data)
         if cls:
             data = [cls(*[int(y) if is_numeric(y) else str(y) for y in x]) for x in data]
+            if debug: print(data)
         return data
 
 def remove_duplicates(iterable: tuple | dict | list | set) -> list:
