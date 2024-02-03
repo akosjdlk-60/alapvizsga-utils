@@ -4,7 +4,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "alapvizsga-utils"
+name = "utils"
 version = "0.0.1"
 authors = [
   { name="Akos K.", email="akosjdlk.60@gmail.com" },
