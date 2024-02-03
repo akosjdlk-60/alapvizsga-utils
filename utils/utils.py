@@ -292,7 +292,7 @@ def read_from_file(path: str, delimiter: str = ",", ignore_first_line: bool = Tr
     if not endswith(path, ".csv") and not endswith(path, ".txt"):
         path += ".txt"
         
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         if ignore_first_line:
             f.readline()
         lines = f.readlines()
