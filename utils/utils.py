@@ -383,6 +383,10 @@ def class_list_atlag(class_list: list[type], key: str) -> float:
         print(class_atlag(class_list, "ar")) -> 507.0
     """
     return sum([getattr(x, key) for x in class_list]) / len(class_list)
+
+
+
+
 #                                                Unit tests
 """----------------------------------------------------------------------------------------------------"""
 def unit_test():
